@@ -1,3 +1,7 @@
 export default function RootPage() {
-  return null
+  return (
+    <div>
+      <p>Redirecting...</p>
+    </div>
+  )
 } 

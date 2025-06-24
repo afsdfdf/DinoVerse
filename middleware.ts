@@ -1,53 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-const locales = ['en', 'zh']
-const defaultLocale = 'en'
-
+// 简化的中间件，只处理根路径
 export function middleware(request: NextRequest) {
-  // Get the pathname from the request
   const pathname = request.nextUrl.pathname
-
-  // Skip middleware for static files and API routes
-  if (
-    pathname.startsWith('/_next') ||
-    pathname.startsWith('/api') ||
-    pathname.startsWith('/images') ||
-    pathname.startsWith('/logo') ||
-    pathname.startsWith('/backgrounds') ||
-    pathname.startsWith('/favicon') ||
-    pathname.includes('.') ||
-    pathname.includes('mine-demo')
-  ) {
-    return NextResponse.next()
+  
+  // 只处理根路径，其他所有路径都直接通过
+  if (pathname === '/') {
+    return NextResponse.redirect(new URL('/en/', request.url))
   }
-
-  // Check if the pathname already has a locale
-  const hasLocale = locales.some(
-    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
-  )
-
-  // If no locale is present, redirect to the default locale
-  if (!hasLocale) {
-    const newPath = pathname === '/' ? `/${defaultLocale}/` : `/${defaultLocale}${pathname}`
-    return NextResponse.redirect(new URL(newPath, request.url))
-  }
-
+  
+  // 所有其他请求直接通过
   return NextResponse.next()
 }
 
+// 只匹配根路径
 export const config = {
-  matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - api (API routes)
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     * - images (static images)
-     * - logo (logo files)
-     * - backgrounds (background images)
-     * - mine-demo (demo directory)
-     */
-    '/((?!api|_next/static|_next/image|favicon.ico|images|logo|backgrounds|mine-demo|.*\\.).*)',
-  ],
+  matcher: ['/'],
 } 

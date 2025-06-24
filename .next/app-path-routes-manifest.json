@@ -1,12 +1,12 @@
 {
   "/_not-found/page": "/_not-found",
   "/page": "/",
-  "/[lang]/faq/page": "/[lang]/faq",
-  "/[lang]/gameplay/page": "/[lang]/gameplay",
   "/[lang]/about/page": "/[lang]/about",
   "/[lang]/page": "/[lang]",
-  "/[lang]/team/page": "/[lang]/team",
-  "/[lang]/play/page": "/[lang]/play",
+  "/[lang]/faq/page": "/[lang]/faq",
   "/[lang]/roadmap/page": "/[lang]/roadmap",
-  "/[lang]/tokenomics/page": "/[lang]/tokenomics"
+  "/[lang]/tokenomics/page": "/[lang]/tokenomics",
+  "/[lang]/play/page": "/[lang]/play",
+  "/[lang]/gameplay/page": "/[lang]/gameplay",
+  "/[lang]/team/page": "/[lang]/team"
 }
